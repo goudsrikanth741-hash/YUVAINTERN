@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PulmoScan — AI Pneumonia Detection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#scan">Skip to scan tool</a>
+
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <a class="brand" href="#top">
+      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 4C11 4 9 9 9 14c0 6-3 8-3 12 0 3 2.2 5 4.8 4.4 2-.5 2.2-3 2.2-6 0-2 .6-3 2-3s2 1 2 3c0 3 .2 5.5 2.2 6C21.8 31 24 29 24 26c0-4-3-6-3-12 0-5-2-10-5-10Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M16 4v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span>PulmoScan</span>
+    </a>
+    <nav class="toplinks" aria-label="Section navigation">
+      <a href="#scan">Run a scan</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#technology">Technology</a>
+      <a href="#details">Details</a>
+    </nav>
+    <span class="task-pill">Week 2 Task</span>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <div class="hero__copy">
+        <h1>Reading chest X-rays for signs of pneumonia, in under two seconds.</h1>
+        <p class="hero__lede">
+          PulmoScan is a demonstration interface for a transfer-learning model that screens chest
+          radiographs and flags likely pneumonia cases for a radiologist's review. Built for
+          <strong>Week 2 — Designing an AI Model Architecture</strong>, it pairs a ResNet-18 backbone
+          with a lightweight classification head trained to prioritize recall over raw accuracy.
+        </p>
+        <div class="hero__actions">
+          <a href="#scan" class="btn btn--primary">Try the demo scan</a>
+          <a href="#architecture" class="btn btn--ghost">See the architecture</a>
+        </div>
+        <p class="hero__note">This build uses a simulated prediction. See <a href="#technology">Technology</a> for how a trained model plugs in.</p>
+      </div>
+
+      <div class="hero__visual" aria-hidden="true">
+        <div class="scanpanel">
+          <svg viewBox="0 0 260 300" class="lungs">
+            <defs>
+              <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="4.2" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            <g filter="url(#glow)" fill="none" stroke="#3FD0C0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M130 20 L130 95" />
+              <path d="M130 95 C 96 100 78 108 66 132 C 50 165 46 205 54 244 C 59 268 78 276 90 262 C 100 250 98 226 96 202 C 94 182 100 168 116 158" />
+              <path d="M130 95 C 164 100 182 108 194 132 C 210 165 214 205 206 244 C 201 268 182 276 170 262 C 160 250 162 226 164 202 C 166 182 160 168 144 158" />
+              <path d="M96 150 h-16 M92 172 h-18 M92 194 h-16" opacity="0.55"/>
+              <path d="M164 150 h16 M168 172 h18 M168 194 h16" opacity="0.55"/>
+              <g opacity="0.7">
+                <path d="M40 60 h180 M40 60 v170" stroke-dasharray="2 6" opacity="0.35"/>
+              </g>
+            </g>
+          </svg>
+          <div class="scanline" aria-hidden="true"></div>
+          <span class="scanpanel__tag">live-feed preview — demo only</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCAN WORKSTATION ============ -->
+  <section class="section" id="scan">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Run a scan</h2>
+        <p>Upload a chest X-ray image and the model will return a Normal / Pneumonia call with a confidence score.</p>
+      </div>
+
+      <div class="workstation">
+        <!-- Upload column -->
+        <div class="panel">
+          <h3 class="panel__title">1. Upload image</h3>
+
+          <div class="dropzone" id="dropzone" tabindex="0" role="button"
+               aria-label="Upload a chest X-ray image">
+            <input type="file" id="fileInput" accept="image/*" hidden>
+            <div class="dropzone__empty" id="dropzoneEmpty">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 16V4M12 4l-4 4M12 4l4 4"/>
+                <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
+              </svg>
+              <p><strong>Drag &amp; drop</strong> a chest X-ray, or click to browse</p>
+              <span class="dropzone__hint">JPG or PNG. This demo does not upload your image anywhere.</span>
+            </div>
+
+            <div class="dropzone__preview" id="dropzonePreview" hidden>
+              <img id="previewImg" alt="Uploaded chest X-ray preview">
+              <div class="scanline scanline--overlay" id="scanOverlay" hidden></div>
+            </div>
+          </div>
+
+          <div class="fileinfo" id="fileInfo" hidden>
+            <span id="fileName">—</span>
+            <button type="button" class="link-btn" id="removeFile">Remove</button>
+          </div>
+
+          <button type="button" class="btn btn--primary btn--block" id="analyzeBtn" disabled>
+            Analyze X-Ray
+          </button>
+          <p class="status" id="statusText" aria-live="polite">Upload an image to begin.</p>
+        </div>
+
+        <!-- Result column -->
+        <div class="panel">
+          <h3 class="panel__title">2. Result</h3>
+
+          <div class="result" id="resultEmpty">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 12l2 2 4-4"/>
+              <circle cx="12" cy="12" r="9"/>
+            </svg>
+            <p>A prediction will appear here once you analyze an image.</p>
+          </div>
+
+          <div class="result-card" id="resultCard" hidden>
+            <div class="result-card__top">
+              <span class="result-card__badge" id="resultBadge">NORMAL</span>
+              <span class="result-card__time" id="resultTime"></span>
+            </div>
+
+            <div class="confidence">
+              <div class="confidence__row">
+                <span>Model confidence</span>
+                <span class="mono" id="confidenceNum">—</span>
+              </div>
+              <div class="confidence__bar">
+                <div class="confidence__fill" id="confidenceFill"></div>
+              </div>
+            </div>
+
+            <div class="split">
+              <div class="split__row">
+                <span class="split__dot split__dot--normal"></span>Normal
+                <span class="mono" id="splitNormal">—</span>
+              </div>
+              <div class="split__row">
+                <span class="split__dot split__dot--pneumonia"></span>Pneumonia
+                <span class="mono" id="splitPneumonia">—</span>
+              </div>
+            </div>
+
+            <p class="result-card__disclaimer">
+              Simulated output for demonstration purposes — not a clinical diagnosis.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ARCHITECTURE ============ -->
+  <section class="section section--alt" id="architecture">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Model architecture</h2>
+        <p>A ResNet-18 backbone, pretrained on ImageNet and fine-tuned on chest X-rays, forms the core of the pipeline below.</p>
+      </div>
+
+      <ol class="pipeline">
+        <li class="pipeline__stage">
+          <span class="pipeline__num">1</span>
+          <div class="pipeline__icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 15l4-4 3 3 5-5 4 4"/></svg>
+          </div>
+          <h4>X-Ray Input</h4>
+          <p>Raw chest radiograph, JPG/PNG or DICOM-derived image.</p>
+        </li>
+        <li class="pipeline__stage">
+          <span class="pipeline__num">2</span>
+          <div class="pipeline__icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h4>Preprocessing</h4>
+          <p>Resize to 224×224 and normalize to ImageNet channel statistics.</p>
+        </li>
+        <li class="pipeline__stage">
+          <span class="pipeline__num">3</span>
+          <div class="pipeline__icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+          </div>
+          <h4>Data Augmentation</h4>
+          <p>Random flips, rotation, and brightness jitter — training only.</p>
+        </li>
+        <li class="pipeline__stage">
+          <span class="pipeline__num">4</span>
+          <div class="pipeline__icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </div>
+          <h4>ResNet-18</h4>
+          <p>Pretrained residual CNN backbone, fine-tuned on radiographs.</p>
+        </li>
+        <li class="pipeline__stage">
+          <span class="pipeline__num">5</span>
+          <div class="pipeline__icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/></svg>
+          </div>
+          <h4>Global Avg Pooling</h4>
+          <p>Condenses final feature maps into a single feature vector.</p>
+        </li>
+        <li class="pipeline__stage">
+          <span class="pipeline__num">6</span>
+          <div class="pipeline__icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="5" cy="18" r="1.6"/><circle cx="19" cy="12" r="1.6"/><path d="M6.6 6h5a2 2 0 0 1 2 2v0a2 2 0 0 0 2 2h1.8M6.6 18h5a2 2 0 0 0 2-2v0a2 2 0 0 1 2-2h1.8M6.6 12h10.8"/></svg>
+          </div>
+          <h4>Fully Connected Layer</h4>
+          <p>Learns task-specific combinations of pooled features.</p>
+        </li>
+        <li class="pipeline__stage pipeline__stage--out">
+          <span class="pipeline__num">7</span>
+          <div class="pipeline__icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h4l2-7 4 14 2-7h4"/></svg>
+          </div>
+          <h4>Normal / Pneumonia</h4>
+          <p>Sigmoid output — a single calibrated probability score.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ TECHNOLOGY ============ -->
+  <section class="section" id="technology">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Technology</h2>
+        <p>The stack this architecture is designed and trained with.</p>
+      </div>
+
+      <div class="techgrid">
+        <div class="techcard">
+          <span class="mono techcard__tag">lang</span>
+          <h4>Python</h4>
+          <p>Core language for the data pipeline, training loop, and model code.</p>
+        </div>
+        <div class="techcard">
+          <span class="mono techcard__tag">framework</span>
+          <h4>PyTorch</h4>
+          <p>Deep learning framework used to define, train, and export the network.</p>
+        </div>
+        <div class="techcard">
+          <span class="mono techcard__tag">backbone</span>
+          <h4>ResNet-18</h4>
+          <p>Residual CNN pretrained on ImageNet, fine-tuned for radiographs.</p>
+        </div>
+        <div class="techcard">
+          <span class="mono techcard__tag">method</span>
+          <h4>Transfer Learning</h4>
+          <p>Reuses pretrained visual features, cutting data and compute needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DETAILS ============ -->
+  <section class="section section--alt" id="details">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Design details</h2>
+        <p>How the pipeline handles data, why it's built this way, and where it goes next.</p>
+      </div>
+
+      <div class="detailgrid">
+        <article class="detailcard detailcard--wide detailcard--cyan">
+          <h3>Data Preprocessing</h3>
+          <p>Every chest X-ray is resized to 224×224 and normalized against ImageNet channel
+          statistics so it matches what ResNet-18 expects. Grayscale radiographs are replicated
+          across three channels to fit the network's input shape, and a stratified split keeps the
+          Normal-to-Pneumonia ratio consistent across training, validation, and test sets.</p>
+        </article>
+
+        <article class="detailcard detailcard--cyan">
+          <h3>Algorithms</h3>
+          <p>The model fine-tunes ResNet-18's residual blocks, pools the final feature maps with
+          global average pooling, and passes them through a fully connected layer trained with
+          binary cross-entropy and the Adam optimizer.</p>
+        </article>
+
+        <article class="detailcard">
+          <h3>Benefits</h3>
+          <ul>
+            <li>Trains effectively on a modest imaging dataset by reusing pretrained features.</li>
+            <li>Outputs a probability, not just a label, so confidence is visible.</li>
+            <li>Light enough to run near real-time on standard hardware.</li>
+          </ul>
+        </article>
+
+        <article class="detailcard detailcard--coral">
+          <h3>Challenges</h3>
+          <ul>
+            <li>Different hospitals' equipment can shift image statistics over time.</li>
+            <li>Small datasets risk overfitting without augmentation and dropout.</li>
+            <li>A missed case is costlier than a false alarm, so thresholds favor recall.</li>
+          </ul>
+        </article>
+
+        <article class="detailcard detailcard--wide">
+          <h3>Future Scalability</h3>
+          <p>The output layer can grow from binary to multi-class — separating bacterial and viral
+          pneumonia from normal scans — with no change to the backbone. A Grad-CAM overlay could
+          show clinicians which regions drove a prediction, and the trained model can export to
+          TorchScript or ONNX to serve real predictions through the same API this interface is
+          already structured to call.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="brand brand--footer">
+      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 4C11 4 9 9 9 14c0 6-3 8-3 12 0 3 2.2 5 4.8 4.4 2-.5 2.2-3 2.2-6 0-2 .6-3 2-3s2 1 2 3c0 3 .2 5.5 2.2 6C21.8 31 24 29 24 26c0-4-3-6-3-12 0-5-2-10-5-10Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+      <span>PulmoScan</span>
+    </div>
+    <p>Week 2 Task — Designing an AI Model Architecture. Predictions in this build are simulated; see <code class="mono">script.js</code> for the API hand-off point.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

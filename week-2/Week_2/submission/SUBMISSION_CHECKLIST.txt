@@ -1,0 +1,5 @@
+Week 2 corrected submission.
+
+Primary Word document: submission/Week_2_Model_Architecture_Report.docx
+The package contains the complete corrected project snapshot.
+See PROJECT_VALIDATION.md for final verification details.
