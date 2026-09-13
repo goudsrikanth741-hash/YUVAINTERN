@@ -1,0 +1,37 @@
+{
+  "best_model": "Logistic Regression",
+  "comparison": {
+    "Multinomial Naive Bayes": {
+      "accuracy": 0.8874801901743264,
+      "precision": 0.9137055837563451,
+      "recall": 0.8557844690966719,
+      "f1_score": 0.88379705400982,
+      "confusion_matrix": [
+        [
+          580,
+          51
+        ],
+        [
+          91,
+          540
+        ]
+      ]
+    },
+    "Logistic Regression": {
+      "accuracy": 0.9207606973058637,
+      "precision": 0.9317073170731708,
+      "recall": 0.9080824088748018,
+      "f1_score": 0.9197431781701445,
+      "confusion_matrix": [
+        [
+          589,
+          42
+        ],
+        [
+          58,
+          573
+        ]
+      ]
+    }
+  }
+}
