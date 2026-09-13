@@ -1,0 +1,36 @@
+seed: 42
+num_classes: 43
+image_size: 64
+batch_size: 64
+num_workers: 2
+epochs: 10
+learning_rate: 0.001
+weight_decay: 0.0001
+val_split: 0.15
+patience: 3
+label_smoothing: 0.0
+device: auto
+data_dir: data
+output_dir: outputs
+
+experiments:
+  baseline_cnn:
+    model: baseline_cnn
+    augmentation: false
+    label_smoothing: 0.0
+    pretrained: false
+  cnn_augmentation:
+    model: baseline_cnn
+    augmentation: true
+    label_smoothing: 0.0
+    pretrained: false
+  resnet18_transfer:
+    model: resnet18
+    augmentation: true
+    label_smoothing: 0.0
+    pretrained: true
+  resnet18_label_smoothing:
+    model: resnet18
+    augmentation: true
+    label_smoothing: 0.1
+    pretrained: true
