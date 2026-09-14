@@ -1,0 +1,22 @@
+Column,Dtype,Missing,Missing %,Unique
+customerID,object,0,0.0,4000
+gender,object,0,0.0,2
+SeniorCitizen,int64,0,0.0,2
+Partner,object,0,0.0,2
+Dependents,object,0,0.0,2
+tenure,int64,0,0.0,73
+PhoneService,object,0,0.0,2
+MultipleLines,object,0,0.0,3
+InternetService,object,0,0.0,3
+OnlineSecurity,object,0,0.0,3
+OnlineBackup,object,0,0.0,3
+DeviceProtection,object,0,0.0,3
+TechSupport,object,0,0.0,3
+StreamingTV,object,0,0.0,3
+StreamingMovies,object,0,0.0,3
+Contract,object,0,0.0,3
+PaperlessBilling,object,0,0.0,2
+PaymentMethod,object,0,0.0,4
+MonthlyCharges,float64,0,0.0,2874
+TotalCharges,float64,0,0.0,3934
+Churn,object,0,0.0,2
