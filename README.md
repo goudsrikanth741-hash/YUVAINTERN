@@ -30,11 +30,3 @@
 
 # \- Customer Churn Prediction project
 
-<<<<<<< HEAD
-## Week-4
-- Plant Disease Detection project
-
-## Week-5
-- Customer Churn Prediction project
-=======
->>>>>>> 7871fe2 (README with Week-5 project)
