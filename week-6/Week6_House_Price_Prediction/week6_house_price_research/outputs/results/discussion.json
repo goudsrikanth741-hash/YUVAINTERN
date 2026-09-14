@@ -1,0 +1,10 @@
+{
+  "headline_result": "Best model: Gradient Boosting Regressor with test R2=0.8394, RMSE=0.3728 ($100k units).",
+  "feature_engineering_effect": {
+    "Gradient Boosting Regressor": -0.0013,
+    "Random Forest Regressor": 0.0031,
+    "Linear Regression": 0.0114
+  },
+  "strongest_raw_predictor": "MedInc",
+  "notes": "Median income (MedInc) is consistently the strongest single predictor of median house value, consistent with the well-documented behaviour of this dataset/domain. Tree-based ensembles (Random Forest, Gradient Boosting) outperform plain Linear Regression, indicating meaningful non-linear and interaction effects among the features (e.g. income combined with location)."
+}

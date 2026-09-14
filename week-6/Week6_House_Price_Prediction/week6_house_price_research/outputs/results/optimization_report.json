@@ -1,0 +1,9 @@
+{
+  "baseline_best": "Gradient Boosting Regressor",
+  "baseline_rmse": 0.37504113099281544,
+  "tuned_best": "Tuned Gradient Boosting",
+  "tuned_rmse": 0.3744618395049758,
+  "tuned_r2": 0.8379081973684395,
+  "search_iterations": 2,
+  "note": "Smoke-test optimization run. The web Experiment Center allows 4-16 iterations for a fuller search."
+}

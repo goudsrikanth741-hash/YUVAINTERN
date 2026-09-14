@@ -1,0 +1,6 @@
+{
+  "source": "SYNTHETIC fallback dataset generated locally (no internet access to download the real dataset in this environment; fetch failed with: HTTPError). Schema and documented feature-target relationships (income as the dominant price driver, coastal premiums) match the real dataset. Delete data/california_housing.csv and re-run with internet access to fetch the real data instead.",
+  "is_synthetic": true,
+  "n_rows": 5000,
+  "n_cols": 9
+}

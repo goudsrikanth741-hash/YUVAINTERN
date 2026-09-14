@@ -1,0 +1,57 @@
+{
+  "best_model": "Tuned Gradient Boosting",
+  "metrics": [
+    {
+      "Model": "Tuned Gradient Boosting",
+      "MAE": 0.2922520579064233,
+      "RMSE": 0.3744618395049758,
+      "R2": 0.8379081973684395
+    },
+    {
+      "Model": "Gradient Boosting Regressor",
+      "MAE": 0.29215963058968847,
+      "RMSE": 0.37504113099281544,
+      "R2": 0.8374062982594235
+    },
+    {
+      "Model": "Random Forest Regressor",
+      "MAE": 0.29492638666666676,
+      "RMSE": 0.3820549455350033,
+      "R2": 0.8312679546850037
+    },
+    {
+      "Model": "Linear Regression",
+      "MAE": 0.3133984228179058,
+      "RMSE": 0.3931703089585608,
+      "R2": 0.8213070794960379
+    }
+  ],
+  "source": {
+    "source": "SYNTHETIC fallback dataset generated locally (no internet access to download the real dataset in this environment; fetch failed with: URLError). Schema and documented feature-target relationships (income as the dominant price driver, coastal premiums) match the real dataset. Delete data/california_housing.csv and re-run with internet access to fetch the real data instead.",
+    "is_synthetic": true,
+    "n_rows": 5000,
+    "n_cols": 9
+  },
+  "features": [
+    "MedInc",
+    "HouseAge",
+    "AveRooms",
+    "AveBedrms",
+    "Population",
+    "AveOccup",
+    "Latitude",
+    "Longitude",
+    "RoomsPerHousehold",
+    "BedroomRatio",
+    "PopulationPerHousehold",
+    "DistanceToCoast",
+    "IncomePerRoom",
+    "RoomsMinusBedrooms",
+    "IncomePerOccupant",
+    "RoomsSquared",
+    "IncomeSquared",
+    "AgeSquared",
+    "LatitudeLongitudeInteraction",
+    "IncomeRoomsInteraction"
+  ]
+}

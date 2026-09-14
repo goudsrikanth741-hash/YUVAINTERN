@@ -1,0 +1,26 @@
+{
+  "original_features": [
+    "MedInc",
+    "HouseAge",
+    "AveRooms",
+    "AveBedrms",
+    "Population",
+    "AveOccup",
+    "Latitude",
+    "Longitude"
+  ],
+  "engineered_features": [
+    "RoomsPerHousehold",
+    "BedroomRatio",
+    "PopulationPerHousehold",
+    "DistanceToCoast",
+    "IncomePerRoom"
+  ],
+  "rationale": {
+    "RoomsPerHousehold": "Living space per occupant - stronger comfort proxy than raw AveRooms.",
+    "BedroomRatio": "Bedrooms as a fraction of total rooms - low ratio often signals larger, higher-value homes.",
+    "PopulationPerHousehold": "Local density proxy.",
+    "DistanceToCoast": "Approximate distance to the coastline, proxy for the documented coastal price premium.",
+    "IncomePerRoom": "Interaction between affluence and living space."
+  }
+}

@@ -1,0 +1,6 @@
+[
+  "The built-in dataset may be synthetic when the real California Housing dataset is unavailable.",
+  "The source target is a historical block-group median, not an individual property appraisal.",
+  "Geographic and economic context is limited; predictions should not be treated as financial advice.",
+  "Random train/test splits can overstate spatial generalization; spatial validation is a recommended extension."
+]

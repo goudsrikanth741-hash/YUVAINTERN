@@ -1,0 +1,11 @@
+{
+  "task": "Supervised regression",
+  "target": "MedHouseVal",
+  "objective": "Predict median house value and compare/optimize models.",
+  "success_metrics": [
+    "MAE",
+    "RMSE",
+    "R2",
+    "5-fold CV R2"
+  ]
+}

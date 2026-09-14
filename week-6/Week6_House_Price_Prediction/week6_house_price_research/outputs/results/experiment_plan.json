@@ -1,0 +1,45 @@
+{
+  "hypothesis": "Gradient Boosting will outperform Linear Regression because housing value relationships are nonlinear and interactive.",
+  "independent_variables": [
+    "MedInc",
+    "HouseAge",
+    "AveRooms",
+    "AveBedrms",
+    "Population",
+    "AveOccup",
+    "Latitude",
+    "Longitude"
+  ],
+  "derived_variables": [
+    "RoomsPerHousehold",
+    "BedroomRatio",
+    "PopulationPerHousehold",
+    "DistanceToCoast",
+    "IncomePerRoom",
+    "RoomsMinusBedrooms",
+    "IncomePerOccupant",
+    "RoomsSquared",
+    "IncomeSquared",
+    "AgeSquared",
+    "LatitudeLongitudeInteraction",
+    "IncomeRoomsInteraction"
+  ],
+  "dependent_variable": "MedHouseVal",
+  "controls": {
+    "random_seed": 42,
+    "test_size": 0.2,
+    "cv_folds": 5,
+    "preprocessing": "fit scaler on training data only"
+  },
+  "metrics": {
+    "primary": "RMSE",
+    "secondary": [
+      "MAE",
+      "R2",
+      "CV R2 mean",
+      "CV R2 std"
+    ]
+  },
+  "optimization": "RandomizedSearchCV on Gradient Boosting; 3-fold CV; configurable 4-16 iterations; minimize RMSE.",
+  "acceptance_rule": "Adopt tuned model only when it improves validation/test performance without materially increasing instability."
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "direction": "Deep learning approaches",
+    "detail": "A small feed-forward neural network (e.g. 2-3 hidden layers with dropout) could capture non-linear feature interactions beyond what Gradient Boosting finds, particularly spatial interactions between latitude/longitude and income."
+  },
+  {
+    "direction": "Explainable AI",
+    "detail": "Apply SHAP values to the Gradient Boosting/Random Forest models to explain individual predictions (e.g. 'why was this specific block group priced at $350k'), important for underwriting transparency."
+  },
+  {
+    "direction": "Larger and richer datasets",
+    "detail": "Extend beyond the 1990-census-era California Housing dataset to current multi-state parcel-level data with school ratings, crime statistics, and walkability scores."
+  },
+  {
+    "direction": "Hyperparameter optimization",
+    "detail": "Run Bayesian optimization (e.g. Optuna) over Gradient Boosting's learning rate, depth, and number of estimators, rather than the default settings used in this baseline research pass."
+  },
+  {
+    "direction": "Real-time prediction / deployment as a web API",
+    "detail": "Wrap the best model in a lightweight Flask/FastAPI service accepting block-group features and returning a live price estimate, with model versioning for periodic retraining as housing prices drift over time."
+  },
+  {
+    "direction": "Improved generalization",
+    "detail": "Test spatial cross-validation (holding out entire geographic regions) instead of random splits, since random splits can leak neighbouring block groups between train and test and overstate generalization."
+  },
+  {
+    "direction": "Bias / fairness analysis",
+    "detail": "Examine whether the model systematically under/over-predicts values in historically under-invested areas, since price data can encode historical inequities that a naive model would learn to reproduce."
+  }
+]
