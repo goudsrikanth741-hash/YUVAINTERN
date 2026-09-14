@@ -11,3 +11,6 @@
 
 ## Week-4
 - Plant Disease Detection project
+
+## Week-5
+- Customer Churn Prediction project
