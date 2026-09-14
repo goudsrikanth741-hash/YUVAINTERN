@@ -1,32 +1,19 @@
-# \# YUVA Internship Projects
+# YUVA Internship Projects
 
-# 
+## Week-1
+- Fake-News-Detection project
 
-# \## Week-1
+## Week-2
+- PulmoScan Detection project
 
-# \- Fake-News-Detection project
+## Week-3
+- Traffic Sign Detection project
 
-# 
+## Week-4
+- Plant Disease Detection project
 
-# \## Week-2
+## Week-5
+- Customer Churn Prediction project
 
-# \- PulmoScan Detection project
-
-# 
-
-# \## Week-3
-
-# \- Traffic Sign Detection project
-
-# 
-
-# \## Week-4
-
-# \- Plant Disease Detection project
-
-# 
-
-# \## Week-5
-
-# \- Customer Churn Prediction project
-
+## Week-6
+- House Price Prediction project
