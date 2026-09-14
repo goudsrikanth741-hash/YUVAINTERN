@@ -1,0 +1,11 @@
+{
+  "source": "SYNTHETIC fallback dataset generated locally (no internet access to download the real IBM Telco CSV in this environment). Schema and documented churn-driver relationships match the real dataset. Place the real CSV at data/Telco-Customer-Churn.csv and re-run for results on the actual dataset.",
+  "is_synthetic": true,
+  "n_rows": 4000,
+  "n_cols": 21,
+  "schema_validation": {
+    "rows": 4000,
+    "columns": 21,
+    "missing_required": []
+  }
+}

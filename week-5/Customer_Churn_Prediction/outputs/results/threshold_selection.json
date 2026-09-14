@@ -1,0 +1,7 @@
+{
+  "f1_optimal_threshold": 0.3,
+  "cost_optimal_threshold": 0.2,
+  "cost_assumption_fn": 5,
+  "cost_assumption_fp": 1,
+  "validation_business_cost": 380.0
+}

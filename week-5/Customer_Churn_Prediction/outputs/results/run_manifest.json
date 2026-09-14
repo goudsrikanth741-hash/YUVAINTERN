@@ -1,0 +1,22 @@
+{
+  "run_utc": "2026-09-14T05:01:23.060613+00:00",
+  "python": "3.13.5",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "random_seed": 42,
+  "dataset": {
+    "source": "SYNTHETIC fallback dataset generated locally (no internet access to download the real IBM Telco CSV in this environment). Schema and documented churn-driver relationships match the real dataset. Place the real CSV at data/Telco-Customer-Churn.csv and re-run for results on the actual dataset.",
+    "is_synthetic": true,
+    "n_rows": 4000,
+    "n_cols": 21
+  },
+  "split_sizes": {
+    "train": 2400,
+    "validation": 800,
+    "test": 800
+  },
+  "engineered_model_features": 42,
+  "best_model": "Logistic Regression (cost-sensitive)",
+  "test_f1": 0.5729,
+  "test_threshold": 0.2,
+  "test_set_used_for_threshold_selection": false
+}

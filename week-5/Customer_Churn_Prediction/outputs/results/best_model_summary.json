@@ -1,0 +1,16 @@
+{
+  "best_model": "Logistic Regression (cost-sensitive)",
+  "test_f1": 0.5728987993138936,
+  "all_candidates_f1": {
+    "Logistic Regression (baseline)": 0.4911242603550296,
+    "Random Forest (baseline)": 0.4864864864864865,
+    "Gradient Boosting (baseline)": 0.4880952380952381,
+    "Logistic Regression (balanced) (balanced)": 0.5612648221343873,
+    "Random Forest (balanced) (balanced)": 0.4785276073619632,
+    "Random Forest (oversampled)": 0.5468354430379747,
+    "Gradient Boosting (tuned)": 0.5072046109510087,
+    "Logistic Regression (threshold-tuned)": 0.556745182012848,
+    "Logistic Regression (cost-sensitive)": 0.5728987993138936
+  },
+  "artifact": "models/best_model.joblib"
+}

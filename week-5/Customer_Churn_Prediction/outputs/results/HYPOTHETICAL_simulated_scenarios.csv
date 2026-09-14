@@ -1,0 +1,6 @@
+Scenario (HYPOTHETICAL),Simulated Precision,Simulated Recall,Simulated F1-score,Interpretation
+Aggressive retention (low threshold),0.45,0.826,0.583,Recall-favoured: catches most churners but with more false alarms - suits high retention budgets.
+Conservative retention (high threshold),0.775,0.362,0.494,"Precision-favoured: retention offers rarely wasted, but many churners are missed."
+Balanced threshold,0.611,0.58,0.595,Balanced trade-off between catching churners and avoiding wasted retention offers.
+Severely imbalanced future dataset (5% churn),0.301,0.277,0.288,Balanced trade-off between catching churners and avoiding wasted retention offers.
+More balanced future dataset (40% churn),0.7,0.668,0.683,Balanced trade-off between catching churners and avoiding wasted retention offers.

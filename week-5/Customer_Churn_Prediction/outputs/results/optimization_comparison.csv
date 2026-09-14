@@ -1,0 +1,7 @@
+Strategy,Model,Baseline F1,Optimized F1,Baseline Recall,Optimized Recall,F1 Improved,F1 Improvement
+class_weight='balanced',Logistic Regression (balanced),0.4911,0.5613,0.3971,0.6794,True,0.0702
+class_weight='balanced',Random Forest (balanced),0.4865,0.4785,0.3876,0.3732,False,-0.008
+Random minority oversampling,Random Forest (oversampled),0.4865,0.5468,0.3876,0.5167,True,0.0603
+"GridSearchCV {'learning_rate': 0.1, 'max_depth': 2, 'n_estimators': 100}",Gradient Boosting (tuned),0.4881,0.5072,0.3923,0.4211,True,0.0191
+Validation F1 threshold=0.300,Logistic Regression (threshold-tuned),0.4911,0.5567,0.3971,0.622,True,0.0656
+"Cost-sensitive threshold=0.200 (FN=5, FP=1)",Logistic Regression (cost-sensitive),0.4911,0.5729,0.3971,0.799,True,0.0818

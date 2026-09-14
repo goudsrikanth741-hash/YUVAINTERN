@@ -1,0 +1,21 @@
+{
+  "what_will_be_evaluated": [
+    "Baseline classification models (Logistic Regression, Random Forest, Gradient Boosting) trained to predict customer churn (Yes/No).",
+    "The impact of optimization strategies (class-imbalance handling, hyperparameter tuning, decision-threshold adjustment) on the same models."
+  ],
+  "performance_indicators": [
+    "Accuracy - overall proportion of correct predictions.",
+    "Precision - of customers predicted to churn, how many actually churned (controls the cost of unnecessary retention offers).",
+    "Recall - of customers who actually churned, how many were correctly caught (controls the cost of missed at-risk customers).",
+    "F1-score - harmonic mean of precision and recall, useful under class imbalance.",
+    "ROC-AUC - threshold-independent measure of class separability.",
+    "Confusion matrix - full breakdown of TP/FP/TN/FN for error-type analysis."
+  ],
+  "tools_and_libraries": [
+    "pandas / NumPy for data handling",
+    "scikit-learn for modelling, metrics, cross-validation and grid search",
+    "matplotlib / seaborn for visualization"
+  ],
+  "interpretation_approach": "Metrics are compared across models and against the baseline before/after optimization. Because churn is imbalanced (churners are the minority class), accuracy alone is treated as unreliable; F1-score, recall and ROC-AUC are weighted more heavily since missing a churner (false negative) is typically more costly to the business than a false retention offer (false positive).",
+  "weakness_identification_approach": "For each model, precision and recall are compared: a large gap where recall is much lower than precision indicates the model is biased toward the majority (non-churn) class, a classic symptom of class imbalance. ROC-AUC below ~0.75 is treated as evidence of weak feature separability requiring feature engineering or a different model family. Cross-validation score variance is used to detect overfitting to the training split."
+}
