@@ -1,0 +1,20 @@
+numpy
+pandas
+opencv-python
+scikit-image
+scikit-learn
+Pillow
+matplotlib
+scipy
+flask
+werkzeug
+joblib
+imageio
+tifffile
+
+# Optional (recommended): enables the CNN training path in src/model.py
+# and CNN-based prediction in src/app.py's "Scan Image" feature.
+# If not installed, src/main.py automatically falls back to a scikit-learn
+# RandomForest baseline trained on the engineered features, so the whole
+# pipeline (and the scanner) still runs end-to-end without it.
+# tensorflow>=2.13
